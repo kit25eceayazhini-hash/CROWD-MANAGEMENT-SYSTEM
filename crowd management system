@@ -1,0 +1,55 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+    queue<int> crowd;
+    int choice, personID = 1;
+    int maxLimit = 5;  // maximum crowd limit
+
+    while (true) {
+        cout << "\n--- Crowd Management System ---\n";
+        cout << "1. Enter Person\n";
+        cout << "2. Exit Person\n";
+        cout << "3. Display Crowd\n";
+        cout << "4. Exit Program\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                if (crowd.size() >= maxLimit) {
+                    cout << "⚠️ Crowd Limit Exceeded! Cannot allow more people.\n";
+                } else {
+                    crowd.push(personID);
+                    cout << "Person " << personID << " entered.\n";
+                    personID++;
+                }
+                break;
+
+            case 2:
+                if (crowd.empty()) {
+                    cout << "No people inside.\n";
+                } else {
+                    cout << "Person " << crowd.front() << " exited.\n";
+                    crowd.pop();
+                }
+                break;
+
+            case 3:
+                if (crowd.empty()) {
+                    cout << "No people in crowd.\n";
+                } else {
+                    cout << "People in crowd: " << crowd.size() << endl;
+                }
+                break;
+
+            case 4:
+                cout << "Exiting system...\n";
+                return 0;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+    }
+}
